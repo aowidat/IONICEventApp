@@ -1,0 +1,28 @@
+#This Apache config file was created by Duplicator Installer on 2020-02-21 16:56:44.
+#The original can be found in archived file with the name .htaccess__[HASH]
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /~ak19g/stage/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /~ak19g/stage/index.php [L]
+</IfModule>
+
+# to enable the HTTP Authorization Header
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+</IfModule>
+
+# to enable WPENGINE
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+# END WordPress
+
