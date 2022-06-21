@@ -4,8 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  apiUrl: 'XXX/wp-json/wp/v2',
-  tokenURL: 'XXXX'
+  apiUrl: 'https://localhost/second/wp-json/wp/v2',
+  tokenURL: 'https://localhost/second/wp-json/jwt-auth/v1/token?username=appuser&password=appuser'
 };
 
 /*
