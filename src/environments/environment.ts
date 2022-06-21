@@ -4,8 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  apiUrl: 'https://pcai042.informatik.uni-leipzig.de/~ak19g/release5/website/wp-json/wp/v2',
-  tokenURL: 'https://pcai042.informatik.uni-leipzig.de/~ak19g/release5/website/wp-json/jwt-auth/v1/token?username=appuser&password=appuser'
+  apiUrl: 'XXX/wp-json/wp/v2',
+  tokenURL: 'XXXX'
 };
 
 /*
