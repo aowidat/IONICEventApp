@@ -35,8 +35,7 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 
-
-C:\Users\azizo\Desktop\IONIC\src\environments
-
+src/environments/environment.prod.ts
+src/environments/environment.ts
 src/environments/environment.prod.ts
 src/environments/environment.ts
