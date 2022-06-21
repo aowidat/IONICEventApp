@@ -18,7 +18,7 @@
 
 * [Download the installer](https://nodejs.org/) for Node.js 6 or greater.
 * Install the ionic CLI globally: `npm install -g ionic`
-* Clone the repository: `git clone [https://git.informatik.uni-leipzig.de/swp19/ak19g/tree/IonicApp/eVENT-IONIC](https://github.com/aowidat/IONICEventApp)` (for the latest version) or use the version in the release bundle.
+* Clone the repository: `git clone [https://github.com/aowidat/IONICEventApp](https://github.com/aowidat/IONICEventApp)` (for the latest version) or use the version in the release bundle.
 * Run `npm install` from the project root.
 * The project has recently been [migrated  from Ionic 4 to Ionic 5](https://ionicframework.com/docs/building/migration). You might have to run `npm install @ionic/angular@latest @ionic/angular-toolkit@latest --save` to see new features used in the project.
 * All used plugins can be found in the [package.json](package.json) and might be installed manually by running `ionic cordova plugin add plugin-name` and `npm install plugin-name`.
