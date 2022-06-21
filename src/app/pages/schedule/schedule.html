@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="md">{{schedulenamevar}}<br/>Veranstaltungsübersicht</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar mode="ios" clear-icon
+      placeholder="Veranstaltungsname" [(ngModel)]="textSuche" (ionChange)="doSearch()">
+      <ion-buttons>
+        <ion-button (click)="doFilter()" *ngIf="!restButton">
+          <ion-icon name="options-outline" size="large"></ion-icon></ion-button>
+        <ion-button *ngIf="restButton" (click)="doResetFilter()">
+          <ion-icon name="refresh-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down"
+      pullingText="Loslassen zum Aktualisieren"
+      refreshingSpinner="crescent"
+      refreshingText="Aktualisieren...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-img class="logo" src="assets/img/logoDesEvents.png"></ion-img>
+  <ion-list>
+    <div  *ngFor="let veranstaltung of veranstaltungen; let i = index">
+    <ion-item *ngIf="veranstaltungen[i-1]?.beginn_datum != veranstaltungen[i]?.beginn_datum" color="light" lines="none">
+      <ion-label>{{veranstaltung?.beginn_datum}}</ion-label>
+    </ion-item>
+    <ion-item lines="full" className="ion-text-wrap"
+      [routerLink]="['/', 'app', 'tabs', 'schedule', veranstaltung?.id]" detail="true">
+      <ion-icon name="star" slot="end" *ngIf="doCheckFavVeranstaltung(veranstaltung?.id) == true"></ion-icon>
+      <ion-icon name="hourglass-outline" slot="start"
+        *ngIf="doCheckVeranstaltungZeit(veranstaltung?.ende_datum, veranstaltung?.ende_zeit) != true">
+      </ion-icon>
+      <ion-label text-wrap>{{veranstaltung?.titel}}
+        <p>{{veranstaltung?.beginn_datum}} - {{ veranstaltung?.ende_datum}}</p>
+        <p>{{veranstaltung?.beginn_zeit}} - {{ veranstaltung?.ende_zeit}}</p>
+      </ion-label>
+    </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

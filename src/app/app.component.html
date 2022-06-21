@@ -1,0 +1,43 @@
+<ion-app [class.dark-theme]="dark">
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menü</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="none">
+          <ion-list-header>
+            Tabübersicht
+          </ion-list-header>
+          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label *ngIf="i==0" class="ion-align-items-center">
+                Veranstaltungsübersicht
+                </ion-label>
+                <ion-label *ngIf="i==1" class="ion-align-items-center">
+                  Aussteller
+                  </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              Dark Theme
+            </ion-label>
+            <ion-toggle [(ngModel)]="dark"></ion-toggle>
+          </ion-item>
+          <ion-item >
+            <ion-button shape="round" style="height:30px;width:100%" expand="full"
+              (click)="clearStorage()">Offline-Daten löschen
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

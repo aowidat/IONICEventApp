@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="md">{{aboutnamevar}}<br/>About</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-img style="width: 300px; height: 300px;" src="{{logo}}" class="img"></ion-img>
+  <div class="about-info">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-icon name="alert-circle" slot="start"></ion-icon>
+        <p class="no-padding">Name: {{aboutnamevar}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <p class="no-padding">Datum: {{about_eventbegindate}} {{about_text_minus}} {{about_eventenddate}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="at-circle" slot="start"></ion-icon>
+        <p class="no-padding">Website: {{about_website_info}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="home" slot="start"></ion-icon>
+        <p class="no-padding">Ort: {{about_location_name}} {{about_text_minus}} {{about_location_street}}
+          {{about_text_minus}} {{about_location_postcode}} {{about_location_city}}
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <p class="no-padding"><u>{{about_arrival_car_intro}}</u> {{about_arrival_car}} <br>
+          <u>{{about_arrival_train_intro}}</u> {{about_arrival_train}} <br>
+          <u>{{about_arrival_airplane_intro}}</u> {{about_arrival_airplane}}
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" slot="start"></ion-icon>
+        <p class="no-padding">Organisator: {{about_organizer_name}} -
+          {{about_organizer_email}} - {{about_organizer_phone}}
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <p class="no-padding">{{about_desc}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

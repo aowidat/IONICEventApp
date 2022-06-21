@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="md">{{newsfeednamevar}}<br/>NewsFeed</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefreshNewsFeed($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down"
+      pullingText="Loslassen zum Aktualisieren"
+      refreshingSpinner="crescent"
+      refreshingText="Aktualisieren...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <div *ngFor="let miteilung of newsFeed">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-label>
+              {{miteilung.date.split('T')[0].split('-')[2]}}.{{miteilung.date.split('T')[0]
+              .split('-')[1]}}.{{miteilung.date.split('T')[0].split('-')[0]}}
+              {{miteilung.date.split('T')[1]}}</ion-label>
+          </ion-card-subtitle>
+          <ion-card-title>
+            {{miteilung.titel}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{miteilung.inhalt}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-list>
+</ion-content>

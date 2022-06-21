@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="md">{{speakernamevar}}<br/>Aussteller: Übersicht</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+      <div *ngFor="let ver of veranstalter">
+      <ion-card *ngIf="ver?.roles == 'aussteller'">
+      <ion-card-header>
+        <ion-card-title>
+          {{ver.personal_data.first_name}} {{ver.personal_data.last_name}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-icon name="mail" *ngIf="ver.personal_data.email != ''"></ion-icon> {{ver.personal_data.email}}
+        <hr>
+        <ion-icon name="globe" *ngIf="ver.personal_data.website != ''"></ion-icon> {{ ver.personal_data.website}}
+        <hr>
+        <ion-icon name="person" *ngIf="ver.personal_data.biography != ''"></ion-icon>
+        <ion-label *ngIf="ver.personal_data.biography != ''"> Mein Bio:</ion-label>
+        <hr>
+        <ion-label *ngIf="ver.personal_data.biography != ''">{{ ver.personal_data.biography}}</ion-label>
+      </ion-card-content>
+      </ion-card>
+      </div>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/tabs/schedule"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="clickFavouriteButton()">
+        <ion-icon name="star-outline" *ngIf="!fav" class="iconxlarg"></ion-icon>
+        <ion-icon name="star" *ngIf="fav" class="iconxlarg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title mode="md">{{sessionnamevar}} - {{veranstaltung?.titel}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <hr>
+    <ion-list-header class="textlarg">
+      <ion-label color="medium">
+        {{veranstaltung?.titel}}</ion-label>
+    </ion-list-header>
+    <hr>
+    <ion-item>
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label>{{' ' + veranstaltung?.verantwortlicher.user_firstname}}
+        {{veranstaltung?.verantwortlicher.user_lastname}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-label>{{' ' + veranstaltung?.beginn_datum}} - {{veranstaltung?.ende_datum}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="alarm" slot="start"></ion-icon>
+      <ion-label>{{' ' + veranstaltung?.beginn_zeit}} - {{veranstaltung?.ende_zeit}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+      <ion-label>{{' ' + veranstaltung?.kategorie}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="locate" slot="start"></ion-icon>
+      <ion-label text-wrap >{{' ' + veranstaltung?.ort.post_title}}<p>
+        Adresse: {{ort?.strasse}}, {{ort?.plz}} {{ort?.ort}}</p>
+        <p *ngIf="veranstaltung?.stand_raum != ''">Raum: {{veranstaltung?.stand_raum}}</p>
+      <ion-label *ngIf="ort?.lageplan != false" (click)="openPDF(ort?.lageplan.url)" color="primary" tappable>
+      Lageplan zu diesem Ort <ion-icon name="attach-outline" slot="end"></ion-icon></ion-label>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="veranstaltung?.eintrittsvoraussetzung  != ''">
+      <ion-icon name="man" slot="start"></ion-icon>
+      <ion-label>Eintrittsvoraussetzung: {{ ' ' + veranstaltung?.eintrittsvoraussetzung}}</ion-label>
+    </ion-item>
+    <ion-item text-wrap *ngIf="veranstaltung?.kurzbeschreibung != ''">
+      <ion-icon slot="start" name="document"></ion-icon>
+      <ion-label text-wrap>{{' ' + veranstaltung?.kurzbeschreibung}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="veranstaltung?.teilnehmer != null && veranstaltung?.teilnehmer != 0">
+      <ion-icon name="flame-outline" slot="start"></ion-icon>
+      <ion-label>{{' ' + veranstaltung?.teilnehmer}} Interesse für die Veranstaltung</ion-label>
+    </ion-item>
+    <hr>
+    <ion-item *ngIf="veranstaltung?.informationsblatt != false">
+      <ion-label class="textlarg">
+        Verfuegbare Dokumente
+      </ion-label>
+    </ion-item>
+      <ion-item *ngIf="veranstaltung?.informationsblatt != false">
+        <ion-icon name="attach-outline" slot="start"></ion-icon>
+        <ion-label tappable
+          (click)="openPDF(veranstaltung?.informationsblatt?.url)">
+          {{veranstaltung?.informationsblatt?.title}}
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="veranstaltung?.informationsblatt != false && veranstaltung?.informationsblatt2 != false">
+        <ion-icon name="attach-outline" slot="start"></ion-icon>
+        <ion-label tappable
+          (click)="openPDF(veranstaltung?.informationsblatt2?.url)">
+          {{veranstaltung?.informationsblatt2?.title}}
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="veranstaltung?.informationsblatt != false
+        && veranstaltung?.informationsblatt2 != false
+        && veranstaltung?.informationsblatt3 != false">
+        <ion-icon name="attach-outline" slot="start"></ion-icon>
+        <ion-label tappable
+        (click)="openPDF(veranstaltung?.informationsblatt3?.url)">
+        {{veranstaltung?.informationsblatt3?.title}}
+        </ion-label>
+      </ion-item>
+    <hr>
+    <ion-item>
+      <ion-label position="floating">Bewertung Schreiben</ion-label>
+      <ion-textarea [(ngModel)]="bewertungsnachricht" [disabled]="bewertenVerbieten"></ion-textarea>
+      <ion-button (click)="rateVeranstaltung()" slot="end" fill="clear" style="align-self: flex-end"
+        [disabled]="bewertenVerbieten">
+        <ion-icon name="send" class="iconxlarg"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="full">
+      <rating [(ngModel)]="rate"
+        readonly="{{bewertenVerbieten}}"
+        size="large">
+      </rating>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

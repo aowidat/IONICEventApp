@@ -1,0 +1,63 @@
+<ion-list>
+  <ion-list-header>
+    <ion-label>Filter Nach</ion-label>
+  </ion-list-header>
+  <ion-item (click)="doFavIsChecked()" detail="true">
+    <ion-label tappable>Favoriten</ion-label>
+  </ion-item>
+  <ion-item *ngIf="favIsChecked">
+    <ion-label>Favoriten</ion-label>
+    <ion-checkbox slot="start" mode="ios" [(ngModel)]="favIsChecked2"></ion-checkbox>
+  </ion-item>
+  <ion-item (click)="doKatIsChecked()" detail="true">
+    <ion-label tappable>Kategorien</ion-label>
+  </ion-item>
+  <ion-list *ngIf="katIsChecked" class="popover">
+    <ion-item *ngFor="let entry of formKatagorie">
+      <ion-label>{{entry.val}}</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="entry.isChecked" mode="ios"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-item (click)="doDatumIsChecked()" detail="true">
+    <ion-label tappable>Datum</ion-label>
+  </ion-item>
+  <ion-item *ngIf="datumIsChecked">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label position="floating">Tag</ion-label>
+            <ion-input maxlength="2" placeholder="TT" inputmode="numeric" [autofocus]="datum"
+              [(ngModel)]="tag"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-label position="floating">Monat</ion-label>
+            <ion-input maxlength="2" placeholder="MM" inputmode="numeric" [(ngModel)]="monat"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-label position="floating">Jahr</ion-label>
+            <ion-input maxlength="4" minlength="4" placeholder="JJJJ" inputmode="numeric"
+              [(ngModel)]="jahr"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-item>
+  <ion-item (click)="doAbgelaufeneIsChecked()" detail="true">
+    <ion-label tappable>Abgelaufene - Kommende</ion-label>
+  </ion-item>
+    <ion-list *ngIf="kommAblaufVeranstaltungen">
+      <ion-item>
+      <ion-label>Abgelaufene</ion-label>
+      <ion-checkbox slot="start"
+        mode="ios" [(ngModel)]="abgelaufeneIsChecked" (click)="toggleAbgelaufen()">
+      </ion-checkbox>
+      </ion-item>
+        <ion-item>
+      <ion-label>Kommende</ion-label>
+      <ion-checkbox slot="start" mode="ios" [(ngModel)]="kommendeIsChecked" (click)="toggleKommen()"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  <ion-button slot="start" fill="clear" size="small" (click)="anwenden()">Anwenden</ion-button>
+  <ion-button slot="end" fill="clear" size="small" (click)="schliessen()">Schliessen</ion-button>
+</ion-list>
